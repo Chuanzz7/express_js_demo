@@ -6,6 +6,7 @@ import logger from 'morgan';
 import validateEnv from '@utils/validateEnv'
 import * as dotenv from 'dotenv'
 import {router as userRouter} from '@routers/users';
+import {router as indexRouter} from '@routers/index';
 
 
 const contextPath = '/api'
@@ -27,6 +28,7 @@ app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('', indexRouter)
 app.use('user', userRouter);
 
 // catch 404 and forward to error handler
