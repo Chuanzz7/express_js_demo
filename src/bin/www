@@ -3,6 +3,7 @@
 /**
  * Module dependencies.
  */
+// @ts-ignore
 import app = require('../app');
 
 const debug = require('debug')('chuan:server');
