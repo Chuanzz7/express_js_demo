@@ -1,28 +1,36 @@
 import createError from 'http-errors';
-import express, {NextFunction} from 'express';
+import express from 'express';
 import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
+import validateEnv from '@utils/validateEnv'
+import * as dotenv from 'dotenv'
+import {router as userRouter} from '@routers/users';
+
 
 const contextPath = '/api'
-const index = express();
+const app = express();
+
+//App Varaibles
+dotenv.config()
+
+validateEnv();
 
 
 // view engine setup
-index.set('views', path.join(__dirname, 'views'));
-index.set('view engine', 'pug');
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');
 // index.use(customLogger);
-index.use(logger('dev'));
-index.use(express.json());
-index.use(express.urlencoded({extended: false}));
-index.use(cookieParser());
-index.use(express.static(path.join(__dirname, 'public')));
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({extended: false}));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
 
-index.use('/', require('./routes'));
-index.use(`${contextPath}/users`, require('./routes/users'));
+app.use('user', userRouter);
 
 // catch 404 and forward to error handler
-index.use(function (req, res, next) {
+app.use(function (req, res, next) {
     next(createError(404));
 });
 
@@ -38,4 +46,6 @@ index.use(function (req, res, next) {
 //     res.render('error');
 // });
 
-module.exports = index;
+module.exports = app;
+
+

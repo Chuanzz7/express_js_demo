@@ -1,4 +1,4 @@
-// Methods to be executed on routes
+// Methods to be executed on routers
 import * as userService from "../services/UserService";
 import {Request, Response} from "express";
 
