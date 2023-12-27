@@ -1,10 +1,12 @@
 import createError from 'http-errors';
-import express from 'express';
+import express, {NextFunction} from 'express';
 import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import validateEnv from '@utils/validateEnv'
 import * as dotenv from 'dotenv'
+import cors from 'cors'
+import helmet from 'helmet'
 import {router as userRouter} from '@routers/users';
 import {router as indexRouter} from '@routers/index';
 
@@ -27,6 +29,8 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(helmet());
+app.use(cors());
 
 app.use('', indexRouter)
 app.use('user', userRouter);
@@ -35,18 +39,6 @@ app.use('user', userRouter);
 app.use(function (req, res, next) {
     next(createError(404));
 });
-
-// error handler
-// @ts-ignore
-// index.use(function (err: Error, req: Request, res: Response, next: NextFunction) {
-//     // set locals, only providing error in development
-//     res.err.message = err.message;
-//     res.locals.error = req.index.get('env') === 'development' ? err : {};
-//
-//     // render the error page
-//     res.status(err.status || 500);
-//     res.render('error');
-// });
 
 module.exports = app;
 

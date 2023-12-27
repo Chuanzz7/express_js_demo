@@ -7,7 +7,7 @@
     "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
     "build": "tsc && tsc-alias",
     "prestart": "npm run build",
-    "start": "npm run build && cross-env NODE_ENV=local node dist/server.js",
+    "start": "npm run build && cross-env NODE_ENV=development node dist/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon"
   },
