@@ -1,0 +1,11 @@
+{
+  "defaultSeverity": "none",
+  "extends": [
+    "tslint:recommended"
+  ],
+  "jsRules": {},
+  "rules": {
+    "trailing-comma": [ false ]
+  },
+  "rulesDirectory": []
+}

@@ -1,11 +1,12 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var customLogger = require('./middleware/logger')
+import createError = require('http-errors');
+import express = require('express');
+import path = require('path');
+import cookieParser = require('cookie-parser');
+import logger = require('morgan');
 const contextPath = '/api'
-var app = express();
+const app = express();
+import * as dotenv from 'dotenv'
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

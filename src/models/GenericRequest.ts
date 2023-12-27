@@ -1,0 +1,3 @@
+interface RequestQuery {
+    id: number
+}

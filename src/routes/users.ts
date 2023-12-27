@@ -1,6 +1,6 @@
 const router = require('express').Router()
-const userController = require('../controllers/userController')
-const customLogger = require('../middleware/logger')
+import userController = require('../controllers/userController');
+import customLogger = require('../middleware/logger');
 
 // ROUTE IS USE TO CONTROL MIDDLEWARE
 
@@ -10,4 +10,4 @@ router.get('/:id', customLogger, userController.getUser)
 /* CREATE user */
 router.post('', customLogger, userController.createUser)
 
-module.exports = router;
+export {router};
