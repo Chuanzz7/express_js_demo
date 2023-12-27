@@ -1,5 +1,5 @@
 // Methods to be executed on routes
-import userService = require('../services/UserService');
+import * as userService from "../services/UserService";
 import {Request, Response} from "express";
 
 const getUser = async (req: Request, res: Response) => {
